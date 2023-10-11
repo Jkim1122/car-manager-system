@@ -14,7 +14,7 @@ class CarManager:
         CarManager.all_cars.append(self)
 
     def __str__(self):
-        return f"A {self._year} {self._make} {self._model} with {self._mileage} miles. List of services:{self._services}"
+        return f"Car ID:{self._id}, {self._year} {self._make} {self._model} with {self._mileage} miles. List of services:{self._services}"
 
     @property
     def get_id(self):
@@ -70,6 +70,10 @@ def view_all_cars():
     for obj in CarManager.all_cars:
         print(obj)
 
+def view_car_details():
+    return f"Car ID:{CarManager.all_cars.get_id}"#, {CarManager.all_cars.get_year} {self._make} {self._model} with {self._mileage} miles. List of services:{self._services}"
+
+
 welcome_message = """
 ----  WELCOME  ---- 
 1. Add a car                  4. See a car's details  7. Quit
@@ -97,5 +101,12 @@ while quit == False:
             view_all_cars()
         case "3":
             print(CarManager.total_cars)
+        case "4":
+            which_car = input("Enter car's ID:  ")
+            for key in CarManager.all_cars:
+                # print(key)
+                if which_car == key:
+                    view_car_details()
+                    # print(f"Color: {CarManager.get_color},  Year: {CarManager.get_year}")
         case "7":
             quit = True
